@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graylon Hampton — Senior Security Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f172a;
+      --navy-mid: #1e293b;
+      --blue: #1d4ed8;
+      --blue-light: #3b82f6;
+      --slate: #475569;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--navy-mid);
+      background: var(--bg);
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.97);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-name { color: #fff; font-weight: 700; font-size: 15px; letter-spacing: 0.3px; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
+      color: #fff;
+      padding: 80px 2rem 72px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #93c5fd;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #93c5fd;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .hero-location { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+    .hero-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--blue-light); }
+    .btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+    .btn-outline:hover { background: rgba(255,255,255,0.08); }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 36px;
+    }
+    .tag {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #cbd5e1;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* SECTIONS */
+    section { padding: 64px 2rem; }
+    section:nth-child(even) { background: var(--white); }
+    .container { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 32px;
+      line-height: 1.2;
+    }
+
+    /* SUMMARY */
+    .summary-text {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--slate);
+      max-width: 780px;
+    }
+    .summary-text strong { color: var(--navy); }
+    .certs { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .cert-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    /* COMPETENCIES */
+    .competencies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .comp-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .comp-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); border-color: #bfdbfe; }
+    .comp-card.featured {
+      border-color: var(--blue);
+      background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+    }
+    .comp-card.featured .comp-title { color: var(--blue); }
+    .comp-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .comp-badge {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .comp-desc { font-size: 12.5px; color: var(--slate); line-height: 1.55; }
+
+    /* EXPERIENCE */
+    .experience-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1px 1fr;
+      gap: 0 24px;
+      padding-bottom: 40px;
+      position: relative;
+    }
+    .exp-item:last-child { padding-bottom: 0; }
+    .exp-line {
+      background: var(--border);
+      width: 1px;
+      position: relative;
+    }
+    .exp-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--blue);
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      position: absolute;
+      top: 4px;
+      left: -4.5px;
+      box-shadow: 0 0 0 3px #dbeafe;
+    }
+    .exp-item:last-child .exp-line::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+    }
+    .exp-content { padding-top: 0; }
+    .exp-header { margin-bottom: 4px; }
+    .exp-role { font-size: 15px; font-weight: 700; color: var(--navy); }
+    .exp-company { font-size: 14px; font-weight: 600; color: var(--blue); margin-bottom: 2px; }
+    .exp-meta { font-size: 12.5px; color: var(--muted); margin-bottom: 12px; }
+    .exp-bullets { list-style: none; padding: 0; }
+    .exp-bullets li {
+      font-size: 13.5px;
+      color: var(--slate);
+      padding: 3px 0 3px 16px;
+      position: relative;
+      line-height: 1.55;
+    }
+    .exp-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--blue-light);
+      font-size: 11px;
+      top: 5px;
+    }
+    .exp-bullets li strong { color: var(--navy); font-weight: 600; }
+    .exp-note {
+      display: inline-block;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #15803d;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* MILITARY */
+    .military-card {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 12px;
+      padding: 32px 36px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .military-icon { font-size: 40px; }
+    .military-title { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+    .military-meta { color: #93c5fd; font-size: 13px; margin-bottom: 16px; }
+    .military-bullets { list-style: none; padding: 0; }
+    .military-bullets li {
+      font-size: 13.5px;
+      color: #cbd5e1;
+      padding: 4px 0 4px 16px;
+      position: relative;
+      line-height: 1.55;
+    }
+    .military-bullets li::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      color: #fbbf24;
+      font-size: 10px;
+      top: 6px;
+    }
+    .military-bullets li strong { color: #fff; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: var(--muted);
+      text-align: center;
+      padding: 32px 2rem;
+      font-size: 13px;
+    }
+    footer a { color: #93c5fd; text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1rem; }
+      section { padding: 48px 1rem; }
+      .military-card { grid-template-columns: 1fr; gap: 16px; padding: 24px 20px; }
+      .hero { padding: 60px 1rem 52px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Graylon Hampton</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">CISSP · Active Secret Clearance</div>
+  <h1>Graylon Hampton</h1>
+  <p class="hero-title">Senior Security Engineer, InfoSec Operations</p>
+  <p class="hero-location">Clearwater, FL · InvestCloud, Inc.</p>
+  <div class="hero-links">
+    <a href="https://linkedin.com/in/graylonhampton" class="btn btn-primary" target="_blank">LinkedIn</a>
+    <a href="mailto:graylonhampton@gmail.com" class="btn btn-outline">Get In Touch</a>
+  </div>
+  <div class="hero-tags">
+    <span class="tag">AI Security Governance</span>
+    <span class="tag">CNAPP / CSPM</span>
+    <span class="tag">Zero Trust / ZTNA</span>
+    <span class="tag">Cloud Security</span>
+    <span class="tag">Vulnerability Management</span>
+    <span class="tag">PAM</span>
+    <span class="tag">EDR / XDR</span>
+    <span class="tag">U.S. Army Veteran</span>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <h2 class="section-title">20+ Years Securing Enterprise Environments</h2>
+    <p class="summary-text">
+      CISSP-certified Senior Security Engineer and U.S. Army wartime veteran with 20+ years of progressive experience across enterprise security operations, cloud security architecture, and program management. One of a small number of security practitioners operating at the intersection of <strong>hands-on cloud security and enterprise AI governance</strong> — serving as security owner and approver for an organization-wide AI adoption strategy including AI/LLM risk assessment, control framework development, and MCP integration security. Currently building and operating the full-spectrum InfoSec program at InvestCloud across cloud security posture, vulnerability management, Zero Trust network access, identity governance, endpoint protection, and data security.
+    </p>
+    <div class="certs">
+      <span class="cert-badge">🛡 CISSP — ISC²</span>
+      <span class="cert-badge">🔐 Active U.S. Secret Clearance</span>
+      <span class="cert-badge">⭐ U.S. Army — Staff Sergeant</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Technical Competencies</p>
+    <h2 class="section-title">Platforms & Domains</h2>
+    <div class="competencies-grid">
+
+      <div class="comp-card featured">
+        <div class="comp-badge">2026 Differentiator</div>
+        <div class="comp-title">AI Security Governance</div>
+        <div class="comp-desc">Enterprise AI adoption strategy ownership, AI/LLM risk assessment, Claude Enterprise (Anthropic), MCP integration security, acceptable use policy authorship, control framework development</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">Cloud Security Posture — CNAPP/CSPM</div>
+        <div class="comp-desc">Cloud-Native Application Protection (Wiz), CSPM, AWS Security Hub, Azure Defender for Cloud, multi-cloud risk governance</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">Vulnerability Management</div>
+        <div class="comp-desc">Tenable.io, Nessus, Wazuh — SLA-driven remediation programs, risk prioritization, executive reporting</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">Identity & Access / PAM</div>
+        <div class="comp-desc">Microsoft Entra ID, Conditional Access, Delinea, CyberArk, AWS IAM, MFA governance, ITDR</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">Zero Trust Network Access — ZTNA/SASE</div>
+        <div class="comp-desc">Zero Trust Architecture, Secure Service Edge (Cato Networks), Secure Web Gateway, network segmentation</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">Network Access Control — NAC</div>
+        <div class="comp-desc">Cisco ISE, Cisco DNA Center, Meraki — RADIUS authentication, micro-segmentation, enterprise wireless</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">Endpoint Security — EDR/XDR</div>
+        <div class="comp-desc">Microsoft Defender for Endpoint, server protection, managed device compliance, threat response</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">MDR & Security Monitoring</div>
+        <div class="comp-desc">Expel.io MDR, Splunk (SIEM analysis), Wazuh IDS/monitoring, incident triage & investigation</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">Data Loss Prevention — DLP</div>
+        <div class="comp-desc">Microsoft Purview DLP, M365 compliance, data classification, sensitive data governance</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">Security Automation & DevSecOps</div>
+        <div class="comp-desc">Python scripting, Claude Code + MCP integrations, GitLab CI/CD, Ansible, Git — custom tooling and workflow automation</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">Edge & Web Application Security</div>
+        <div class="comp-desc">Cloudflare WAF, DNS security, edge controls</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-title">Compliance & Governance</div>
+        <div class="comp-desc">NIST 800-53, PCI DSS 4.0, SOC 2 Type 2, Zero Trust Architecture (ZTA), MITRE ATT&CK</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Career History</h2>
+    <div class="experience-list">
+
+      <div class="exp-item">
+        <div class="exp-line"><div class="exp-dot"></div></div>
+        <div class="exp-content">
+          <div class="exp-role">Senior Security Engineer, InfoSec Operations</div>
+          <div class="exp-company">InvestCloud, Inc.</div>
+          <div class="exp-meta">Sep 2024 – Present · Tampa, FL (Hybrid)</div>
+          <ul class="exp-bullets">
+            <li><strong>Security owner and approver of the enterprise AI adoption strategy</strong> — AI/LLM risk assessments, control gap analysis, acceptable use policy authorship, and MCP integration security governance for Claude Enterprise rollout.</li>
+            <li>Own the enterprise <strong>CNAPP/CSPM program (Wiz)</strong> — cloud posture management, vulnerability prioritization, and risk governance across AWS and Azure.</li>
+            <li>Operate the enterprise <strong>Vulnerability Management program (Tenable.io)</strong> end-to-end; produce weekly executive risk reports for security leadership.</li>
+            <li>Architected and deployed <strong>Zero Trust Network Access / SSE (Cato Networks)</strong> replacing legacy VPN for a globally distributed workforce.</li>
+            <li>Built <strong>Python security automation toolkit</strong> using Claude Code and MCP integrations to streamline reporting, asset tagging, and risk metrics.</li>
+            <li>Lead <strong>Privileged Access Management (Delinea)</strong> — least-privilege, just-in-time provisioning, privileged session accountability.</li>
+            <li>Govern <strong>Microsoft Entra ID Conditional Access</strong> and managed device compliance posture.</li>
+            <li>Administer <strong>Microsoft Defender EDR/XDR</strong> across hybrid endpoints and cloud-hosted servers.</li>
+            <li>Oversee <strong>Microsoft Purview DLP</strong> protecting sensitive financial data across M365.</li>
+            <li>Primary escalation for incident triage and response with <strong>Expel.io MDR</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-line"><div class="exp-dot"></div></div>
+        <div class="exp-content">
+          <div class="exp-role">Security Analyst, InfoSec Operations</div>
+          <div class="exp-company">InvestCloud, Inc.</div>
+          <div class="exp-meta">May 2022 – Sep 2024 · Remote</div>
+          <ul class="exp-bullets">
+            <li>Led enterprise Vulnerability Management operations (Tenable.io), building SLA-driven remediation workflows.</li>
+            <li>Managed enterprise password vault migration, standardizing access management and credential governance.</li>
+            <li>Administered CyberArk PAM configurations for privileged access governance in client-facing environments.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-line"><div class="exp-dot"></div></div>
+        <div class="exp-content">
+          <div class="exp-role">Platform Support Engineer</div>
+          <div class="exp-company">InvestCloud, Inc.</div>
+          <div class="exp-meta">Sep 2021 – May 2022 · Tampa, FL</div>
+          <ul class="exp-bullets">
+            <li>Maintained AWS EC2 environments, Cloudflare WAF, DNS, and NGINX platforms serving global clients.</li>
+            <li>Automated infrastructure deployments using GitLab CI/CD, Jenkins, and Ansible.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-line"><div class="exp-dot"></div></div>
+        <div class="exp-content">
+          <div class="exp-role">Co-Founder & Co-Owner <span class="exp-note">Acquired 2026</span></div>
+          <div class="exp-company">CloudArmory LLC</div>
+          <div class="exp-meta">Feb 2024 – Jun 2026 · Self-employed</div>
+          <ul class="exp-bullets">
+            <li>Co-founded an MSP delivering full-spectrum IT and cloud security to fintech clients on AWS infrastructure.</li>
+            <li>Led <strong>PCI DSS 4.0</strong> compliance programs two consecutive years — gap assessments, controls, and audit readiness.</li>
+            <li>Achieved <strong>SOC 2 Type 2</strong> certification through controls design, evidence collection, and audit coordination.</li>
+            <li>Architected multi-tenant AWS environments with security-first IAM frameworks for financial services clients.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-line"><div class="exp-dot"></div></div>
+        <div class="exp-content">
+          <div class="exp-role">Network Technical Analyst III</div>
+          <div class="exp-company">Pasco County Government</div>
+          <div class="exp-meta">Jan 2019 – Sep 2021 · New Port Richey, FL</div>
+          <ul class="exp-bullets">
+            <li>Deployed Network Access Control (Cisco ISE, DNA Center) — RADIUS authentication and micro-segmentation across county infrastructure.</li>
+            <li>Managed Cisco Meraki enterprise wireless rollout to 50+ locations.</li>
+            <li>Maintained Duo MFA, firewall policy, and VPN infrastructure for government operations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-line"><div class="exp-dot"></div></div>
+        <div class="exp-content">
+          <div class="exp-role">Technical Team Lead & Systems Administrator</div>
+          <div class="exp-company">Kforce Inc.</div>
+          <div class="exp-meta">Mar 2017 – Apr 2019 · Tampa, FL</div>
+          <ul class="exp-bullets">
+            <li>Led four-person infrastructure support team; redesigned incident response protocols and mentored junior engineers.</li>
+            <li>Administered Exchange, Active Directory, and end-user systems infrastructure.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MILITARY -->
+<section>
+  <div class="container">
+    <p class="section-label">Military Service</p>
+    <h2 class="section-title">United States Army</h2>
+    <div class="military-card">
+      <div class="military-icon">🎖</div>
+      <div>
+        <div class="military-title">Network Systems Operator — Signal Corps (Reserve)</div>
+        <div class="military-meta">November 2003 – 2024 · Staff Sergeant (SSG) · Wartime Veteran, Operation Iraqi Freedom</div>
+        <ul class="military-bullets">
+          <li>Served 20+ years as a Reserve Network Systems Operator alongside a full civilian career in IT and cybersecurity.</li>
+          <li><strong>Combat Deployment (2008–2009):</strong> Night Shift Supervisor for the theater-wide communications network spanning Iraq and Kuwait — accountable for satellite communications, tactical networking, and signal infrastructure sustaining mission-critical operations around the clock.</li>
+          <li>Led signal platoon operations at the brigade level as acting Platoon Sergeant, overseeing personnel readiness, equipment accountability, and OPSEC enforcement.</li>
+          <li>Trained and mentored junior soldiers on communications security and tactical networking protocols.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container" style="text-align:center; max-width: 560px;">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Get In Touch</h2>
+    <p style="color: var(--slate); margin-bottom: 28px;">Open to senior security engineering and security leadership opportunities. Let's connect.</p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a href="mailto:graylonhampton@gmail.com" class="btn btn-primary" style="font-size:15px; padding: 12px 24px;">graylonhampton@gmail.com</a>
+      <a href="https://linkedin.com/in/graylonhampton" class="btn btn-outline" style="font-size:15px; padding: 12px 24px; background: var(--navy); color:#fff; border-color: var(--border);" target="_blank">LinkedIn Profile</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Graylon Hampton · <a href="https://linkedin.com/in/graylonhampton">linkedin.com/in/graylonhampton</a></p>
+</footer>
+
+</body>
+</html>
