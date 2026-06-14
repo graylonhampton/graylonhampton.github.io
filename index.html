@@ -111,6 +111,8 @@
     .btn-primary:hover { background: var(--blue-light); }
     .btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.25); }
     .btn-outline:hover { background: rgba(255,255,255,0.08); }
+    .btn-download { background: #059669; color: #fff; }
+    .btn-download:hover { background: #10b981; }
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
@@ -167,7 +169,11 @@
       font-weight: 600;
       padding: 8px 16px;
       border-radius: 8px;
+      text-decoration: none;
     }
+    .cert-link { border: 1px solid #3b82f6; transition: background 0.2s; }
+    .cert-link:hover { background: #1e3a5f; }
+    .cert-verify { font-size: 11px; color: #93c5fd; font-weight: 500; }
 
     /* COMPETENCIES */
     .competencies-grid {
@@ -350,6 +356,8 @@
   <p class="hero-location">Clearwater, FL · InvestCloud, Inc.</p>
   <div class="hero-links">
     <a href="https://linkedin.com/in/graylonhampton" class="btn btn-primary" target="_blank">LinkedIn</a>
+    <a href="/resume.pdf" class="btn btn-download" download="GraylonHampton_Resume.pdf">↓ Resume</a>
+    <a href="https://github.com/graylonhampton" class="btn btn-outline" target="_blank">GitHub</a>
     <a href="mailto:graylonhampton@gmail.com" class="btn btn-outline">Get In Touch</a>
   </div>
   <div class="hero-tags">
@@ -373,7 +381,7 @@
       CISSP-certified Senior Security Engineer and U.S. Army wartime veteran with 20+ years of progressive experience across enterprise security operations, cloud security architecture, and program management. One of a small number of security practitioners operating at the intersection of <strong>hands-on cloud security and enterprise AI governance</strong> — serving as security owner and approver for an organization-wide AI adoption strategy including AI/LLM risk assessment, control framework development, and MCP integration security. Currently building and operating the full-spectrum InfoSec program at InvestCloud across cloud security posture, vulnerability management, Zero Trust network access, identity governance, endpoint protection, and data security.
     </p>
     <div class="certs">
-      <span class="cert-badge">🛡 CISSP — ISC²</span>
+      <a href="https://www.credly.com/users/graylonhampton" class="cert-badge cert-link" target="_blank">🛡 CISSP — ISC² <span class="cert-verify">↗ Verify</span></a>
       <span class="cert-badge">🔐 Active U.S. Secret Clearance</span>
       <span class="cert-badge">⭐ U.S. Army — Staff Sergeant</span>
     </div>
